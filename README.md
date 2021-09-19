@@ -34,7 +34,7 @@ THEN I can save my initials and my score
 11. 
 
 ## Website Preview
-![Website Image.](https://github.com/Leci1259/HW4-CodeQuiz/blob/main/Assets/Img/SS.jpg)
+![Website Image.](https://github.com/Leci1259/HW4-CodeQuiz/blob/main/Assets/IMG/SS.jpg)
 
 
 ## Website Link
