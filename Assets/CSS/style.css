@@ -69,7 +69,7 @@ ol {
     text-shadow: 2px 2px 5px rgba(47, 159, 235, 0.604);
     font-size: 1.75em;
   }
-  #name {
+  #score-text{
     color: rgba(47, 159, 235, 0.604)
   }
 
@@ -78,3 +78,8 @@ ol {
     background-color: rgb(255, 255, 255);
     box-shadow: inset 0px 0px 8px rgba(47, 159, 235, 0.604), 0 0 15px rgba(47, 159, 235, 0.604);
   }
+#pop {
+  color: rgba(233, 113, 169, 0.986);
+    text-shadow: 2px 2px 5px rgba(47, 159, 235, 0.604);
+    font-size: 1.75em;
+}
