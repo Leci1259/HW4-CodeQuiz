@@ -113,23 +113,20 @@ ans4.textContent = quizQuestions.answers[3];
             endMess.innerHTML = "<label> Name:</label><br>\n<input id='name' type='text'<br><br>\n<a href= './/highscore.html'> <input id='submit' type='submit' value='Submit'> </a>";
             replaceAns.parentNode.replaceChild(endMess, replaceAns);
             contain.removeEventListener("click", myFunction);
+
+            var nameInput= document.querySelector("#name").value;
+            localStorage.setItem("name",nameInput);
+            localStorage.setItem("score", secondsLeft)
+
             }
         };
-     //   replace();
- 
-   // }
-    //will replace text and whole answer list with form when questions are done
-    /*else {
-        headTitle.textContent = "The quiz is now over!"
-        ques.textContent = "Your final score was " + secondsLeft;
-        var endMess = document.createElement('form');
-        newItem.innerHTML = "<label> Name:</label><br>\n<input type='text'<br><br>\n<a href= './/highscore.html'> <input type='submit' value='Submit'> </a>";
-        replaceAns.parentNode.replaceChild(endMess, replaceAns);
-        //return
-    //}     
-    //}
+   x=0;
+            function fillHighScore (){
+        var scoreList = document.querySelectorAll("#scoreList")
 
-
+        scoreList[x].value= localStorage.getItem("name") + ": " + localStorage.getItem("score");
+          x++;  
+    }
 
 
 
