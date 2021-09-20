@@ -44,6 +44,7 @@ function setTime() {
       if(secondsLeft === 0) {
         // Stops execution of action at set interval
         clearInterval(timerInterval);
+        timerDisplay.textContent = "Time's Up!"
       }
   
     }, 1000);
@@ -60,53 +61,73 @@ var startButton = document.querySelector(".startButton");
 var timerDisplay = document.querySelector(".timer")
 var replaceAns = document.querySelector("ol");
 var headTitle = document.querySelector("h2");
+var pop = document.querySelector("#pop");
 
 
-//Run timer when start pressed
-startButton.addEventListener("click", function() {
-    setTime();
-});
 
 //Start Button Function to Change Question
 startButton.addEventListener("click", function() {
+     setTime();
 //Make section visible
 contain.setAttribute("style","visibility = visible;")
  //Change header and 4 buttons text content
- //Need to figure out how to loop this
 ques.textContent = quizQuestions.questions[0];
 ans1.textContent = quizQuestions.answers[0];
 ans2.textContent = quizQuestions.answers[1];
 ans3.textContent = quizQuestions.answers[2];
 ans4.textContent = quizQuestions.answers[3];
-replace();
 });
 
     //loop is running to five instead of waiting for a listening effect each time
-    var i1= 1;
-    var i2 = 4;
-    function replace () {
-    if (i1<quizQuestions.questions.length && i2<quizQuestions.answers.length) {
+    var i1= 0;
+    var i2 = 3;
+
+    //function replace () {
+    //if (i1<quizQuestions.questions.length && i2<quizQuestions.answers.length) {
        //When any of the answer buttons are clicked 
-       contain.addEventListener("click", function() { 
-        ques.textContent = quizQuestions.questions[i1]; 
-        ans1.textContent = quizQuestions.answers[i2];
+       contain.addEventListener("click", myFunction);
+
+       function myFunction () {
+           //if index below run
+           var answer = event.target.textContent;
+           if (answer == quizQuestions.correctAns[i1]) {
+               pop.textContent = "Correct Answer!"
+           }
+           else {
+               pop.textContent = "Wrong Answer!"
+               secondsLeft=secondsLeft-10;
+           }
+
+           if (i1< quizQuestions.questions.length && secondsLeft!==0) {
+        ques.textContent = quizQuestions.questions[++i1]; 
+        ans1.textContent = quizQuestions.answers[++i2];
         ans2.textContent = quizQuestions.answers[++i2];
         ans3.textContent = quizQuestions.answers[++i2];
         ans4.textContent = quizQuestions.answers[++i2];
-    });
-        replace();
+           }
+           else {
+           
+            headTitle.textContent = "The quiz is now over!"
+            ques.textContent = "Your final score was " + secondsLeft;
+            var endMess = document.createElement('form');
+            endMess.innerHTML = "<label> Name:</label><br>\n<input id='name' type='text'<br><br>\n<a href= './/highscore.html'> <input id='submit' type='submit' value='Submit'> </a>";
+            replaceAns.parentNode.replaceChild(endMess, replaceAns);
+            contain.removeEventListener("click", myFunction);
+            }
+        };
+     //   replace();
  
-    }
+   // }
     //will replace text and whole answer list with form when questions are done
-    else {
+    /*else {
         headTitle.textContent = "The quiz is now over!"
         ques.textContent = "Your final score was " + secondsLeft;
         var endMess = document.createElement('form');
         newItem.innerHTML = "<label> Name:</label><br>\n<input type='text'<br><br>\n<a href= './/highscore.html'> <input type='submit' value='Submit'> </a>";
         replaceAns.parentNode.replaceChild(endMess, replaceAns);
-        return
-    }     
-    }
+        //return
+    //}     
+    //}
 
 
 
@@ -126,14 +147,13 @@ var clearButton = document.querySelector(".clear")
 
 
 /*Brainstorm thoughts 
-need to figure out how to loop through object
-need to use seconds left variable and report it as score
 needs to be an highscore entry screen triggered by zero interval or last question
 need to check for correct/wrong answer and subtract time if wrong
 take name from form and score number and output on highscore
-recursive function issue
+need to figure out why it takes a extra click to trigger form
 
-everytime an answer button is pressed the loop needs to progress
+
+
 
 
 
