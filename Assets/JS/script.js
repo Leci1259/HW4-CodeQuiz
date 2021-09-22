@@ -17,7 +17,7 @@ var timerDisplay = document.querySelector(".timer")
 var replaceAns = document.querySelector("ol");
 var headTitle = document.querySelector("h2");
 var pop = document.querySelector("#pop");
-var submit = document.querySelector("#submit");
+let submit ;
 var scoreList = {
     name:[],
     score:[]
@@ -62,6 +62,8 @@ function gameOver() {
             endMess.setAttribute("id", "score-form");
             endMess.innerHTML = "<label> Name:</label> \n <input id='score-text' name='score-text' type='text'/>\n <input id='submit' type='submit' value='Submit' action ='./highscore.html'/> ";
             replaceAns.parentNode.replaceChild(endMess, replaceAns);
+            submit = document.querySelector("#submit");
+            submitScore(finalScore);
     }
 //
 
@@ -119,23 +121,28 @@ ans4.textContent = quizQuestions.answers[3];
         };
 
           //submit button function
-           submit.addEventListener('submit',function (event){
-            
-            //keeps text on screen
-            event.preventDefault();
-
-            //grabs text input
-            var name = document.querySelector("#score-text");
-            
-            //pushes values to object
-            scoreList.name.push(name.value);
-            scoreList.score.push(finalScore);
-            
-            // clear input
-           name.value="";
-            //grabs the list object and stores it locally
-            localStorage.setItem("scoreList",JSON.stringify(scoreList));
-           });
+          function submitScore(finalScore){
+               submit.addEventListener('click', function (event) {
+           
+           
+                   //keeps text on screen
+                   event.preventDefault();
+                   console.log('button clicked dude')
+               
+                   //grabs text input
+                   var name = document.querySelector("#score-text");
+               
+                   //pushes values to object
+                   scoreList.name.push(name.value);
+                   scoreList.score.push(finalScore);
+               
+                   // clear input
+                   //name.value = "";
+                   //grabs the list object and stores it locally
+                   localStorage.setItem("scoreList", JSON.stringify(scoreList));
+               
+               });
+           }
 
 
         
