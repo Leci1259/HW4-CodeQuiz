@@ -17,6 +17,7 @@ var timerDisplay = document.querySelector(".timer")
 var replaceAns = document.querySelector("ol");
 var headTitle = document.querySelector("h2");
 var pop = document.querySelector("#pop");
+var submit = document.querySelector("#submit");
 var scoreList = {
     name:[],
     score:[]
@@ -61,19 +62,8 @@ function gameOver() {
             endMess.setAttribute("id", "score-form");
             endMess.innerHTML = "<label> Name:</label> \n <input id='score-text' name='score-text' type='text'/>\n <input id='submit' type='submit' value='Submit' action ='./highscore.html'/> ";
             replaceAns.parentNode.replaceChild(endMess, replaceAns);
-            
-            
-            //grabs submit button and input
-            //var submit = document.querySelector("#submit");
-            var name = document.querySelector("#score-text");
-            scoreList.name.push(name.value);
-            scoreList.score.push(finalScore);
-            
-            //grabs the list object and stores it locally
-
-            localStorage.setItem("scoreList",JSON.stringify(scoreList));
     }
-
+//
 
 
 //Start Button event
@@ -99,7 +89,7 @@ ans4.textContent = quizQuestions.answers[3];
 //Answer buttons event
        contain.addEventListener("click", myFunction);
 
-       function myFunction () {
+       function myFunction (event) {
            //Grabs the answer pressed
            var answer = event.target.textContent;
 
@@ -108,12 +98,11 @@ ans4.textContent = quizQuestions.answers[3];
                //shows correct answer text
                pop.textContent = "Correct Answer!"
            }
-           else {
+           else if (secondsLeft>0) {
                //shows wrong answer text and deducts time
                pop.textContent = "Wrong Answer!"
-               if (secondsLeft>0) {
                    secondsLeft=secondsLeft-10;
-               }
+            
            }
 
            // changes to next question if index is not out of bounds
@@ -128,8 +117,25 @@ ans4.textContent = quizQuestions.answers[3];
            gameOver();
             }
         };
+
           //submit button function
-           
+           submit.addEventListener('submit',function (event){
+            
+            //keeps text on screen
+            event.preventDefault();
+
+            //grabs text input
+            var name = document.querySelector("#score-text");
+            
+            //pushes values to object
+            scoreList.name.push(name.value);
+            scoreList.score.push(finalScore);
+            
+            // clear input
+           name.value="";
+            //grabs the list object and stores it locally
+            localStorage.setItem("scoreList",JSON.stringify(scoreList));
+           });
 
 
         
