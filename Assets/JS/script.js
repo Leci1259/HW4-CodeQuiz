@@ -21,15 +21,15 @@ let submit ;
 
 
 //Checks for previous stored data and grabs it
-if (scoreList != null) {
+if (storedScores !== null) {
 
-    var scoreList=JSON.parse(localStorage.getItem("scoreList"))
+    var storedScores=JSON.parse(localStorage.getItem("storedScores"))
 }
 //creates variable if no data exists
 else {
-var scoreList = {
-    name:[],
-    score:[]
+var storedScores = {
+    name:[""],
+    score:[""]
 }
 }
 
@@ -70,7 +70,8 @@ function gameOver() {
             //Create form to capture name and place form in place of the answer choices
             var endMess = document.createElement('form');
             endMess.setAttribute("id", "score-form");
-            endMess.innerHTML = "<label> Name:</label> \n <input id='score-text' name='score-text' type='text'/>\n <input id='submit' type='submit' value='Submit' action ='./highscore.html'/> ";
+            endMess.setAttribute("action", "./highscore.html");
+            endMess.innerHTML = "<label> Name:</label> \n <input id='score-text' name='score-text' type='text'/>\n <input id='submit' type='submit' value='Submit'/> ";
             replaceAns.parentNode.replaceChild(endMess, replaceAns);
             submit = document.querySelector("#submit");
             submitScore(finalScore);
@@ -143,13 +144,13 @@ ans4.textContent = quizQuestions.answers[3];
                    var name = document.querySelector("#score-text");
                
                    //pushes values to object
-                   scoreList.name.push(name.value);
-                   scoreList.score.push(finalScore);
+                   storedScores.name.push(name.value);
+                    storedScores.score.push(finalScore);
                
                    // clear input
                    //name.value = "";
                    //grabs the list object and stores it locally
-                   localStorage.setItem("scoreList", JSON.stringify(scoreList));
+                   localStorage.setItem("storedScores", JSON.stringify(storedScores));
                
                });
            }
