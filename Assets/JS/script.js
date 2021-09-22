@@ -17,6 +17,10 @@ var timerDisplay = document.querySelector(".timer")
 var replaceAns = document.querySelector("ol");
 var headTitle = document.querySelector("h2");
 var pop = document.querySelector("#pop");
+var scoreList = {
+    name:[],
+    score:[]
+}
 
 
 //Timer seconds
@@ -32,8 +36,8 @@ function setTime() {
   
       if(secondsLeft === 0) {
         // Stops execution of action at set interval
-        gameOver();
         clearInterval(timerInterval);
+        gameOver();
         timerDisplay.textContent = "Time's Up!"
       }
   
@@ -42,10 +46,15 @@ function setTime() {
 
   //Function for end of game
 function gameOver() {
-        //shows text telling the user game over
-        //var finalScore = secondsLeft;
+        
+        var finalScore = secondsLeft;
+
+        //stops the change caused by clicking in this area
+            contain.removeEventListener("click", myFunction);
+            
+            //shows text telling the user game over
             headTitle.textContent = "The quiz is now over!"
-            ques.textContent = "Your final score was " + score;
+            ques.textContent = "Your final score was " + finalScore;
             
             //Create form to capture name and place form in place of the answer choices
             var endMess = document.createElement('form');
@@ -53,13 +62,16 @@ function gameOver() {
             endMess.innerHTML = "<label> Name:</label> \n <input id='score-text' name='score-text' type='text'/>\n <input id='submit' type='submit' value='Submit' action ='./highscore.html'/> ";
             replaceAns.parentNode.replaceChild(endMess, replaceAns);
             
-            //stops the change caused by clicking in this area
-            contain.removeEventListener("click", myFunction);
             
+            //grabs submit button and input
+            //var submit = document.querySelector("#submit");
+            var name = document.querySelector("#score-text");
+            scoreList.name.push(name.value);
+            scoreList.score.push(finalScore);
             
-            /*grabs the name input and score and stores is locally
-            localStorage.setItem("name",nameInput);
-            localStorage.setItem("score", score)*/
+            //grabs the list object and stores it locally
+
+            localStorage.setItem("scoreList",JSON.stringify(scoreList));
     }
 
 
@@ -80,7 +92,7 @@ ans3.textContent = quizQuestions.answers[2];
 ans4.textContent = quizQuestions.answers[3];
 });
 
-//Sets index variables for change question function
+//Sets index variables for change question inside myfunction
     var i1= 0;
     var i2 = 3;
 
@@ -116,91 +128,14 @@ ans4.textContent = quizQuestions.answers[3];
            gameOver();
             }
         };
+          //submit button function
            
+
+
         
 
 
-
-
-//Highscore Page
-var goBackButton = document.querySelector(".goBack")
-var clearButton = document.querySelector(".clear")
-var scoreInput = document.querySelector("#score-text");
-var scoreForm = document.querySelector("#score-form");
-var scoreList = document.querySelector("#score-list");
-var scores =[];
-
-//renders items in a score list as <li> elements
-function renderScores() {
-    // Clear scoreList element
-    scoreList.innerHTML = "";
-  
-    // Render a new li for each score
-    for (var i = 0; i < scores.length; i++) {
-      var score = scores[i];
-  
-      var li = document.createElement("li");
-      li.textContent = score;
-      li.setAttribute("data-index", i);
-    
-      scoreList.appendChild(li);
-    }
-  }
-// stores the scores
-  function storeScores() {
-    // Stringify and set key in localStorage to todos array
-    localStorage.setItem("scores", JSON.stringify(scores));
-  }
-  
-//runs on page load to show scores
-  function init() {
-    // Get stored scores from localStorage
-    var storedScores = JSON.parse(localStorage.getItem("scores"));
-  
-    // If scores were retrieved from localStorage, update the scores array to it
-    if (storedScores !== null) {
-      scores = storedScores;
-    }
-  
-    // This is a helper function that will render scores to the DOM
-    renderScores();
-  }
-
-  // Add submit event to form
-scoreForm.addEventListener("submit", function(event) {
-    event.preventDefault();
-  
-    var scoreText = scoreInput.value + ": " + secondsLeft;
-  
-    // Return from function early if submitted todoText is blank
-    if (scoreText === "") {
-      return;
-    }
-  
-    // Add new todoText to todos array, clear the input
-    scores.push(scoreText);
-    scoresInput.value = "";
-  
-    // Store updated todos in localStorage, re-render the list
-    storeScores();
-    renderScores();
-  });
-
-  init();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        
 /*Brainstorm thoughts 
 needs to be an highscore entry screen triggered by zero interval or last question
 take name from form and score number and output on highscore
