@@ -18,9 +18,19 @@ var replaceAns = document.querySelector("ol");
 var headTitle = document.querySelector("h2");
 var pop = document.querySelector("#pop");
 let submit ;
+
+
+//Checks for previous stored data and grabs it
+if (scoreList != null) {
+
+    var scoreList=JSON.parse(localStorage.getItem("scoreList"))
+}
+//creates variable if no data exists
+else {
 var scoreList = {
     name:[],
     score:[]
+}
 }
 
 
@@ -35,7 +45,7 @@ function setTime() {
        secondsLeft--;
        timerDisplay.textContent = secondsLeft + " seconds left!";
   
-      if(secondsLeft === 0) {
+      if(secondsLeft === 0 || i1>quizQuestions.questions) {
         // Stops execution of action at set interval
         clearInterval(timerInterval);
         gameOver();
@@ -100,7 +110,7 @@ ans4.textContent = quizQuestions.answers[3];
                //shows correct answer text
                pop.textContent = "Correct Answer!"
            }
-           else if (secondsLeft>0) {
+           else if (secondsLeft>0 && quizQuestions.answers.includes(answer)) {
                //shows wrong answer text and deducts time
                pop.textContent = "Wrong Answer!"
                    secondsLeft=secondsLeft-10;
@@ -154,6 +164,8 @@ needs to be an highscore entry screen triggered by zero interval or last questio
 take name from form and score number and output on highscore
 submit button triggers to highscore page
 need to figure out why it takes a extra click to trigger form
+
+timer functionality off. 
 
 
 
