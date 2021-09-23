@@ -145,10 +145,11 @@ ans4.textContent = quizQuestions.answers[3];
                     storedScores.score.push(finalScore);
                
                    // clear input
-                   //name.value = "";
+                   name= "";
+
                    //grabs the list object and stores it locally
                    localStorage.setItem("storedScores", JSON.stringify(storedScores));
-               
+                  window.location.href = "./highscore.html"
                });
            }
 
