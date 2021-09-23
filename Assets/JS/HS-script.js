@@ -2,17 +2,15 @@
 var goBackButton = document.querySelector(".goBack")
 var clearButton = document.querySelector(".clear")
 var scoreList = document.querySelector("#score-list");
-
+var storedScores = JSON.parse(localStorage.getItem("storedScores")) || {
+   name: [],
+   score: [],
+ };
+ 
 //runs on page load to show scores
   function init() {
 
-    // Get stored scores from localStorage
-    var storedScores = JSON.parse(localStorage.getItem("storedScores")) || {
-       name: [],
-       score: [],
-     };
-
-     for (var i = 0; i < storedScores.length; i++) {
+         for (var i = 0; i < storedScores.length; i++) {
       var score = storedScores.score[i];
       var name = storedScores.name[i];
   
@@ -35,3 +33,5 @@ var scoreList = document.querySelector("#score-list");
 
  // run on start
  init();
+
+ /* Not grabbing local storage*/
