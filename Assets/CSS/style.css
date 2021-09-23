@@ -83,3 +83,12 @@ ol {
     text-shadow: 2px 2px 5px rgba(47, 159, 235, 0.604);
     font-size: 1.75em;
 }
+
+.goBack a {
+  font-size: 3.5rem;
+}
+
+.clear {
+  text-shadow: 2px 2px 5px rgba(47, 159, 235, 0.604);
+  text-decoration: underline;
+}
