@@ -19,19 +19,15 @@ var headTitle = document.querySelector("h2");
 var pop = document.querySelector("#pop");
 let submit ;
 
+//Sets index variables for change question inside myfunction
+    var i1= 0;
+    var i2 = 3;
 
 //Checks for previous stored data and grabs it
-if (storedScores !== null) {
-
-    var storedScores=JSON.parse(localStorage.getItem("storedScores"))
-}
-//creates variable if no data exists
-else {
-var storedScores = {
-    name:[""],
-    score:[""]
-}
-}
+var storedScores = JSON.parse(localStorage.getItem("storedScores")) || {
+     name: [],
+     score: [],
+   };
 
 
 //Timer seconds
@@ -44,11 +40,17 @@ function setTime() {
     var timerInterval = setInterval(function() {
        secondsLeft--;
        timerDisplay.textContent = secondsLeft + " seconds left!";
-  
-      if(secondsLeft === 0 || i1>quizQuestions.questions) {
+     
+       if (i1>= quizQuestions.questions.length) {
+         gameOver();
+         clearInterval(timerInterval);
+         timerDisplay.textContent = "Finished Early!"
+     }
+
+      if(secondsLeft <= 0) {
         // Stops execution of action at set interval
-        clearInterval(timerInterval);
         gameOver();
+         clearInterval(timerInterval);
         timerDisplay.textContent = "Time's Up!"
       }
   
@@ -59,7 +61,7 @@ function setTime() {
 function gameOver() {
         
         var finalScore = secondsLeft;
-
+        
         //stops the change caused by clicking in this area
             contain.removeEventListener("click", myFunction);
             
@@ -95,9 +97,7 @@ ans3.textContent = quizQuestions.answers[2];
 ans4.textContent = quizQuestions.answers[3];
 });
 
-//Sets index variables for change question inside myfunction
-    var i1= 0;
-    var i2 = 3;
+
 
 //Answer buttons event
        contain.addEventListener("click", myFunction);
@@ -126,9 +126,6 @@ ans4.textContent = quizQuestions.answers[3];
         ans3.textContent = quizQuestions.answers[++i2];
         ans4.textContent = quizQuestions.answers[++i2];
            }
-           else {
-           gameOver();
-            }
         };
 
           //submit button function
@@ -141,10 +138,10 @@ ans4.textContent = quizQuestions.answers[3];
                    console.log('button clicked dude')
                
                    //grabs text input
-                   var name = document.querySelector("#score-text");
+                   var name = document.querySelector("#score-text").value;
                
                    //pushes values to object
-                   storedScores.name.push(name.value);
+                   storedScores.name.push(name);
                     storedScores.score.push(finalScore);
                
                    // clear input
@@ -161,19 +158,6 @@ ans4.textContent = quizQuestions.answers[3];
 
         
 /*Brainstorm thoughts 
-needs to be an highscore entry screen triggered by zero interval or last question
-take name from form and score number and output on highscore
-submit button triggers to highscore page
-need to figure out why it takes a extra click to trigger form
-
-timer functionality off. 
-
-
-
-
-
-
-
-
+submit button isn't triggering to highscore page
 
 */
