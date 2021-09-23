@@ -30,8 +30,8 @@ THEN I can save my initials and my score
 7. Troubleshooted ideas
 8. Added Timer to page
 9. Constructed highscore page
-10.
-11. 
+10.Set up local storage across both html pages
+11. Debugged code
 
 ## Website Preview
 ![Website Image.](https://github.com/Leci1259/HW4-CodeQuiz/blob/main/Assets/IMG/SS.jpg)
@@ -42,3 +42,4 @@ https://leci1259.github.io/HW4-CodeQuiz/
 
 ## Collaborators
 Kelsey Perkins, https://github.com/kperkins97/
+Reagin Turner, https://github.com/Reagintaylor

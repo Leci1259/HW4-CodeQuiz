@@ -158,7 +158,3 @@ ans4.textContent = quizQuestions.answers[3];
 
 
         
-/*Brainstorm thoughts 
-submit button isn't triggering to highscore page
-
-*/
