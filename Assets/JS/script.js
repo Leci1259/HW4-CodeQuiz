@@ -135,7 +135,6 @@ ans4.textContent = quizQuestions.answers[3];
            
                    //keeps text on screen
                    event.preventDefault();
-                   console.log('button clicked dude')
                
                    //grabs text input
                    var name = document.querySelector("#score-text").value;

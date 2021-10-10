@@ -1,24 +1,11 @@
 # HW4-CodeQuiz
 
 ## Description
-This homework assignment is focused on building a quiz on javascript using HTML, CSS, and Javascript.
-In this homework I wasn't given starter code.
+This is a quick timed quiz on a few coding topics.
 
 
-### Acceptance Criteria
-```
-GIVEN I am taking a code quiz
-WHEN I click the start button
-THEN a timer starts and I am presented with a question
-WHEN I answer a question
-THEN I am presented with another question
-WHEN I answer a question incorrectly
-THEN time is subtracted from the clock
-WHEN all questions are answered or the timer reaches 0
-THEN the game is over
-WHEN the game is over
-THEN I can save my initials and my score
-```
+## Technologies Used
+CSS, HTML,Javascript
 
 ## My Process
 1. Physically wrote out the process needed to be done by the code
@@ -43,3 +30,14 @@ https://leci1259.github.io/HW4-CodeQuiz/
 ## Collaborators
 Kelsey Perkins, https://github.com/kperkins97/
 Reagin Turner, https://github.com/Reagintaylor
+
+## Questions
+Email Me or check out my repol if you have any questions!
+Email: Lesianareid@gmail.com
+[Github Repo](https://github.com/leci1259)
+
+## License
+Released under MIT License Copyright (c) 2013 Mark Otto. Copyright (c) 2017 Andrew Fong 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)"
+
+
